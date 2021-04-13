@@ -13,16 +13,19 @@ public class ShoppingCart {
 
 
     private ProductRepository productRepository;
+    private List<Product> productsInCart;
 
     @Autowired
     public void setProductRepository(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
 
-    private List<Product> productsInCart;
-
     public ShoppingCart(List<Product> productsInCart) {
         this.productsInCart = new ArrayList<Product> ();
+    }
+
+    public List<Product> getProductsInCart() {
+        return productsInCart;
     }
 
     @Override
@@ -32,18 +35,18 @@ public class ShoppingCart {
                 '}';
     }
 
-    public List <Product> addToCart (int id) {
+    public List <Product> addToCart (Integer id) {
         for (Product product: productRepository.getProducts ()) {
-            if (product.getId () == id){
+            if (id.equals (product.getId ())){
                 productsInCart.add (product);
             }
         }
         return productsInCart;
     }
 
-    public List <Product> deleteFromCart (int id) {
+    public List <Product> deleteFromCart (Integer id) {
         for (Product product: productRepository.getProducts ()) {
-            if (product.getId () == id){
+            if (id.equals (product.getId ())){
                 productsInCart.remove (product);
             }
         }
