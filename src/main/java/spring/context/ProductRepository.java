@@ -37,10 +37,10 @@ public class ProductRepository {
                 '}';
     }
 
-    public String getNameByID (int id) {
+    public String getNameByID (Integer id) {
         String name = "No such ID";
             for (Product product: products) {
-                if (product.getId () == id) name = product.getName ();
+                if (id.equals (product.getId ())) return product.getName ();
             }
         return name;
     }
